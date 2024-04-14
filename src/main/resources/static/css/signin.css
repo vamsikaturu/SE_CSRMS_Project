@@ -1,0 +1,85 @@
+body, html{
+    height: 100%;
+    
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.bg-image{
+    background-image: url("images/reminder3.jpg");
+
+  /* Add the blur effect */
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.signin{
+    width: 400px;
+    background: rgba(0, 0, 0, 0.7);
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    padding: 70px 30px 50px; 
+    border-radius: 1rem;
+    color: white;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+
+input{
+    border: none;
+    border-bottom: 1px solid black;
+    background: transparent;
+    font-size: 16px;
+    height: 30px;
+    outline: none;
+    width: 20rem;
+    color: white;
+    margin: 0rem 0rem 2rem;;
+}
+
+.buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: nowrap;
+}
+
+button{
+    border: none;
+    outline: none;
+    height: 40px;
+    background: #fb2525;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 20px;
+    margin: 1rem 0rem;
+    width: 7rem;
+}
+
+button:hover{
+    cursor: pointer;
+}
+
+h1{
+    color: white;
+    text-align: center;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}

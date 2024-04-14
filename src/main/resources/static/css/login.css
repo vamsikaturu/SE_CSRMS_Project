@@ -1,0 +1,59 @@
+body{
+    background-image: url(images/reminder2.jpg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.login{
+    width: 320px;
+    height: 420px;
+    background: rgba(0, 0, 0, 0.7);
+    top: 50%;
+    left: 70%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    padding: 70px 30px;
+    border-radius: 1rem;
+    color: white;
+}
+form{
+    width: 10rem;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+input{
+    border: none;
+    border-bottom: 1px solid black;
+    background: transparent;
+    font-size: 16px;
+    height: 30px;
+    outline: none;
+    width: 15rem;
+    color: white;
+}
+
+button{
+    border: none;
+    outline: none;
+    height: 40px;
+    background: #fb2525;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 20px;
+    margin: 1rem 0rem;
+}
+
+button:hover{
+    cursor: pointer;
+}
+
+h1{
+    color: red;
+    text-align: center;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
