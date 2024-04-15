@@ -28,7 +28,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
-public class ReminderController extends ThreadPoolTaskScheduler {
+public class ReminderController{
     
     @Autowired
     ReminderRepository reminderRepository;
@@ -53,7 +53,7 @@ public class ReminderController extends ThreadPoolTaskScheduler {
         return "redirect:/userhome";
     }
 
-    private void sendEmail(Reminder reminder, String email, LocalDateTime localDateTime) {
+    public void sendEmail(Reminder reminder, String email, LocalDateTime localDateTime) {
 
         LocalDateTime scheduledDateTime = localDateTime;
 
@@ -64,10 +64,15 @@ public class ReminderController extends ThreadPoolTaskScheduler {
             // mailMessage.setText(reminder.getTitle()+"\n"+reminder.getDescription());
             // mailMessage.setSubject("Reminder Alert");
             // javaMailSender.send(mailMessage);
-
-            reminder.setStatus("completed");
-            reminderRepository.save(reminder);
-            System.out.println("update the reminder");
+            Reminder checkReminder = reminderRepository.findByTaskId(reminder.getTaskId());
+            if(checkReminder != null){
+                reminder.setStatus("completed");
+                reminderRepository.save(reminder);
+                System.out.println("update the reminder");
+            }
+            else{
+                System.out.println("task deleted");
+            }
         };
 
         Instant triggerTime = scheduledDateTime.atZone(ZoneId.systemDefault()).toInstant();
@@ -82,7 +87,9 @@ public class ReminderController extends ThreadPoolTaskScheduler {
     @RequestMapping("deleteTask")
     public String deleteTask(@RequestParam("taskId") int taskId){
         System.out.println("delete task");
-        cancelTaskScheduled(taskId);
+        Reminder reminder = reminderRepository.findByTaskId(taskId);
+        reminder.setUser(null);
+        reminderRepository.delete(reminder);
         return "redirect:/userhome";
     }
 }
