@@ -122,13 +122,6 @@ li {
     position: absolute;
 }
 
-/* .customerData{
-	width:85rem;
-	color: antiquewhite;
-    margin: 2rem 10rem 5rem 5rem;
-    font-size: 24px;
-    background: rgb(0,0,0,0.7);
-} */
 table.scrolldown {
     width: 100%;
     /* border-collapse: collapse; */
@@ -175,4 +168,43 @@ td {
     border-bottom: 2px solid black;
     width: 11rem;
     height: 4rem;
+}
+
+.pop-up {
+    display: none; /* Hide popup by default */
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    width: 320px;
+    transform: translate(-50%, -50%);
+    background-color: rgb(183, 179, 179);
+    padding: 50px 30px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+.pop-up form{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: nowrap;
+}
+
+.pop-up input{
+    border: none;
+    border-bottom: 1px solid black;
+    background: transparent;
+    font-size: 16px;
+    height: 30px;
+    width: inherit;
+    outline: none;
+    margin: 1rem 0rem 2rem;
 }

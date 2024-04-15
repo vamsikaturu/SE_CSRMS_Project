@@ -11,6 +11,7 @@
 <link href="js/userpage.js" type="text/javascript">
 </head>
 <body>
+
     <div class="header">
         <form:form action="/logout" style="
         padding: 0px;
@@ -20,6 +21,7 @@
         </div>
         </form:form>
     </div>
+
     <div class="task">
         <div class="add-task">
             <form:form action="addTask" modelAttribute="task" method="post">
@@ -51,7 +53,8 @@
                                 <td>${row.dateTime}</td>
                                 <td>${row.status}</td>
                                 <td>
-                                    <a><img src="css\images\pen.png" width="32" height="32"></a>
+                                    <a><img onclick="onClickEditButton('${row.taskId}','${row.title}', '${row.description}', '${row.dateTime}')" 
+                                        src="css\images\pen.png" width="32" height="32"></a>
                                     <a href="deleteTask?taskId=${row.taskId}"><img src="css\images\bin.png" width="32" height="32"></a>
                                 </td>
                             </tr>
@@ -61,9 +64,39 @@
             </form>
         </div>
     </div>
+
+    <div class="pop-up" id="pop-up">
+        <form:form id="form-edit" action="updateTask" method="post">
+            <input id="edit-title" type="text" name="title" placeholder="Title" required>
+            <textarea name="description" minlength="5" required id="edit-des" rows="6" placeholder="description"></textarea>
+            <input id="edit-time" type="datetime-local" name="dateTime">
+            <input type="hidden" name="user.username" value="${username}">
+            <input id="taskId" type="hidden" name="taskId" >
+            <input type="hidden" name="status" value="Inprogress">
+            <div class="butons">
+                <button>Update</button>
+                <button onclick="onClickCancel()">Cancel</button>
+            </div>
+        </form:form>
+    </div>
+
 </body>
 </html>
 
 
+<script type="text/javascript">
 
+    const onClickEditButton = (taskId, title, desc, dateTime)=>{
+        document.getElementById('pop-up').style.display = 'block';
+        document.getElementById('taskId').value = taskId
+        document.getElementById('edit-title').value = title
+        document.getElementById('edit-des').value = desc
+        document.getElementById('edit-time').value = dateTime
+    }
+
+    const onClickCancel = (e) =>{
+        e.preventDefault()
+        document.getElementById ('pop-up').style.display = 'hide'
+    }
+</script>
 
