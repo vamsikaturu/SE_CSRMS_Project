@@ -16,9 +16,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.pack.seproject.model.Category;
 import com.pack.seproject.model.User;
-import com.pack.seproject.repository.CategoryRepository;
-import com.pack.seproject.repository.ReminderRepository;
-import com.pack.seproject.repository.UserRespository;
+import com.pack.seproject.service.CategoryService;
+import com.pack.seproject.service.UserService;
 
 
 
@@ -26,13 +25,10 @@ import com.pack.seproject.repository.UserRespository;
 public class UserController {
     
 	@Autowired
-	UserRespository userRespository;
+	UserService userService;
 
 	@Autowired
-	ReminderRepository reminderRepository;
-
-	@Autowired
-	CategoryRepository categoryRepository;
+	CategoryService categoryService;
 	
 	@Autowired
 	JavaMailSender javaMailSender;
@@ -61,7 +57,7 @@ public class UserController {
 	public String signInProcess(User user, Model m){
 		System.out.println(user.getEmail());
 
-		userRespository.save(user);
+		userService.saveUser(user);
 
 		SimpleMailMessage mailMessage = new SimpleMailMessage();
 		mailMessage.setFrom("vamsikaturu008@gmail.com");
@@ -83,8 +79,7 @@ public class UserController {
 	
 		m.addAttribute("username", userdetails[0]);
 		m.addAttribute("id", userdetails[1]);
-
-		List<Category> category = categoryRepository.findByUserId(Integer.parseInt(userdetails[1]));
+		List<Category> category = categoryService.getCategoryList(Integer.parseInt(userdetails[1]));
 		m.addAttribute("category", category);
 		return "homepage";
 	}

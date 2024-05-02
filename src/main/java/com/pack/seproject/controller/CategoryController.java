@@ -6,8 +6,8 @@ import org.springframework.ui.Model;
 
 import com.pack.seproject.model.Category;
 import com.pack.seproject.model.User;
-import com.pack.seproject.repository.CategoryRepository;
-import com.pack.seproject.repository.UserRespository;
+import com.pack.seproject.service.CategoryService;
+import com.pack.seproject.service.UserService;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,10 +18,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class CategoryController {
     
     @Autowired
-    CategoryRepository categoryRepository;
+    CategoryService categoryService;
 
     @Autowired
-    UserRespository userRespository;
+    UserService userService;
 
     @GetMapping("/category")
     public String categoryPage(@RequestParam String username, Model m) {
@@ -32,10 +32,10 @@ public class CategoryController {
 
     @PostMapping("/addcategory")
     public String addCategory(Category category, Model m) {
-        User user = userRespository.findByUsername(category.getUser().getUsername());
+        User user = userService.findByUsername(category.getUser().getUsername());
         Category category2 = new Category(category.getCategoryName(), user);
 
-        categoryRepository.save(category2);
+        categoryService.saveCategory(category2);
 
         return "redirect:/userhome";
     }

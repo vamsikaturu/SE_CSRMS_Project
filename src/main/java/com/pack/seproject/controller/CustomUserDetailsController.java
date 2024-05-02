@@ -7,16 +7,16 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import com.pack.seproject.model.CustomUserDetails;
 import com.pack.seproject.model.User;
-import com.pack.seproject.repository.UserRespository;
+import com.pack.seproject.service.UserService;
 
 public class CustomUserDetailsController implements UserDetailsService {
 
     @Autowired
-    UserRespository userRespository;
+    UserService userService;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRespository.findByUsername(username);
+        User user = userService.findByUsername(username);
         if (user == null) {
             throw new UsernameNotFoundException("User not found");
         }
