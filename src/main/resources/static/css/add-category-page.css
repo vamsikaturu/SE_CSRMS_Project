@@ -1,0 +1,82 @@
+body{
+    background-image: url(images/reminder2.jpg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed;
+    margin: 0;
+}
+
+
+form input[type="submit"]{
+    margin: 10px 20px 10px 0px;
+    background-color: transparent;
+    border: none; 
+    height: 2.375rem;	 
+    width: 6.25rem;
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: white;
+}
+
+form input[type="submit"]:hover {
+    cursor: pointer;
+}
+
+.task{
+    width: 55rem;
+    height: 40rem;
+    padding: 2rem;
+    margin: 1rem;
+}
+
+.add-task{
+    width: 320px;
+    height: 420px;
+    background: rgba(230, 213, 213, 0.7);
+    top: 50%;
+    left: 20%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    padding: 70px 30px;
+    border-radius: 1rem;
+    color: white;
+}
+.add-task form{
+    width: 10rem;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+
+input{
+    border: none;
+    border-bottom: 1px solid black;
+    background: transparent;
+    font-size: 16px;
+    height: 30px;
+    outline: none;
+    width: 15rem;
+    margin: 1rem 0rem 2rem;
+}
+
+.buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: nowrap;
+}
+
+button{
+    border: none;
+    outline: none;
+    height: 40px;
+    background: #fb2525;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 20px;
+    margin: 1rem 0rem;
+    width: 7rem;
+}

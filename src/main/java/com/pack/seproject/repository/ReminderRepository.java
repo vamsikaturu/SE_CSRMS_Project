@@ -13,5 +13,7 @@ public interface ReminderRepository extends JpaRepository<Reminder, Integer> {
     Reminder findByTaskId(int taskId);
     
     void deleteByTaskId(int taskId);
+
+    List<Reminder> findByCategoryCategoryName(String value);
     
 }

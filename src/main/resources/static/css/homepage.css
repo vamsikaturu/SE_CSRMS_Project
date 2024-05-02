@@ -1,0 +1,144 @@
+body{
+    background-image: url(images/reminder2.jpg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed;
+    margin: 0;
+    color: white;
+    font-family: sans-serif;
+}
+
+.category{
+    display: inline;
+    float:inline-end;
+}
+
+.category button{
+    margin: 2rem;
+    padding: 1rem;
+    width: 10rem;
+    height: 4rem;
+    border: none;
+    background-color: #739BD0;
+    border-radius: 0.25rem;
+    font-size: 17px;
+    color: white;
+}
+
+.homepage-action{
+    position: absolute;
+    top: 25%;
+    left: 20%;
+}
+/* 
+button{
+    margin: 1px;
+    padding: 1px;
+    border: none;
+    background-color: #739BD0;
+    width: 10rem;
+    height: 7rem;
+    border-radius: 0.25rem;
+    font-size: 17px;
+    color: white;
+} */
+
+button:hover{
+    cursor: pointer;
+}
+
+form input[type="submit"]{
+    margin: 10px 20px 10px 0px;
+    background-color: transparent;
+    border: none; 
+    height: 2.375rem;	 
+    width: 6.25rem;
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: white;
+}
+
+form input[type="submit"]:hover {
+    cursor: pointer;
+}
+
+.add-category{
+    margin: 2rem;
+    display: none;
+}
+
+.task{
+    width: 55rem;
+    height: 40rem;
+    padding: 2rem;
+    margin: 1rem;
+}
+
+.add-task{
+    padding: 2rem;
+    display: block;
+    margin-left: 15%;
+    margin-right: auto;
+    width: 30%;
+    margin-top: 10rem;
+    margin-bottom: auto;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 1rem;
+}
+.add-task form{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+input{
+    border: none;
+    border-bottom: 1px solid black;
+    background: transparent;
+    font-size: 16px;
+    height: 30px;
+    outline: none;
+    color: white;
+}
+ 
+button{
+    border: none;
+    outline: none;
+    height: 40px;
+    background: #fb2525;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 20px;
+    margin: 1rem 0rem;
+    width: 7rem;
+}
+
+.add-task textarea{
+    border: none;
+    border-bottom: 1px solid black;
+    background: transparent;
+    outline: none;
+    color: white;
+}
+input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+    color: rgba(255, 255, 255, 0);
+    opacity: 1
+  }
+select{
+    height: 2rem;
+    background: none;
+    border-radius: 1rem;
+    margin: 1rem 0rem 1rem 0rem;
+    font-size: 1rem;
+    text-align: center;
+    color: white;
+}
+select option {
+    background: antiquewhite;
+    color: black;
+}
+
+option[id = "null"]{
+    display:none;
+}

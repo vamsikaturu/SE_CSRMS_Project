@@ -25,9 +25,11 @@
 </html>
 
 <script>
-
-
-    console.log("${param.error}")
+    let error = window.location.search
+    console.log(error)
+    if(error == '?error'){
+        alert("Invalid username/password")
+    }
     if ( window.history.replaceState ) {
       window.history.replaceState( null, null, window.location.href );
     }

@@ -14,11 +14,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.pack.seproject.model.Reminder;
+import com.pack.seproject.model.Category;
 import com.pack.seproject.model.User;
+import com.pack.seproject.repository.CategoryRepository;
 import com.pack.seproject.repository.ReminderRepository;
 import com.pack.seproject.repository.UserRespository;
-
 
 
 
@@ -30,16 +30,17 @@ public class UserController {
 
 	@Autowired
 	ReminderRepository reminderRepository;
+
+	@Autowired
+	CategoryRepository categoryRepository;
 	
 	@Autowired
 	JavaMailSender javaMailSender;
 
 	@GetMapping("/login" )
-	public String loginPage(User user, Model m) {
-
+	public String loginPage (User user, Model m) {
 		m.addAttribute( "user", new User());
 		return "login";
-
 	}
 	
 	@GetMapping("/signin")
@@ -48,6 +49,13 @@ public class UserController {
 		m.addAttribute("signinData", new User());
 		return "signin";
 	}
+
+	@GetMapping("/login_error")
+	public String loginError(Model m) {
+		m.addAttribute("error", "error");
+		return "redirect:/login";
+	}
+	
 
 	@PostMapping("/signin_process")
 	public String signInProcess(User user, Model m){
@@ -74,13 +82,13 @@ public class UserController {
 		String[] userdetails = userdata.toString().split(" ");
 	
 		m.addAttribute("username", userdetails[0]);
-		m.addAttribute("task", new Reminder());
+		m.addAttribute("id", userdetails[1]);
 
-		List<Reminder> reminders = reminderRepository.findByUserId(Integer.parseInt(userdetails[1]));
-        m.addAttribute("reminder", reminders);
-		if(reminders.size() == 0){
-			System.out.println("no task");
-		}
-		return "userpage";
+		List<Category> category = categoryRepository.findByUserId(Integer.parseInt(userdetails[1]));
+		m.addAttribute("category", category);
+		return "homepage";
 	}
+
+
+	
 }
