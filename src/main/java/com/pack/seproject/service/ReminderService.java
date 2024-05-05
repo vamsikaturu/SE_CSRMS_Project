@@ -7,7 +7,6 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -35,7 +34,6 @@ public class ReminderService {
 	JavaMailSender javaMailSender;
 
     public Reminder saveReminder(Reminder task) {
-        sendReminder(task, task.getUser().getEmail(), task.getDateTime(), task.getRepeat().split(" "));
         return reminderRepository.save(task);
     }
 
@@ -85,8 +83,6 @@ public class ReminderService {
 
 
     public Reminder updateReminder(Reminder updateReminder, LocalDateTime dateTime) {
-        sendReminder(updateReminder, updateReminder.getUser().getEmail(), dateTime, 
-                        updateReminder.getRepeat().split(" "));
         return reminderRepository.save(updateReminder);
     }
 
@@ -157,19 +153,8 @@ public class ReminderService {
                         System.out.println("update reminder : "+checkReminder.getIsUpdate());
                 }
                 else{
-                    if(reminder.getIsUpdate() == 1){
-                        SimpleMailMessage mailMessage = new SimpleMailMessage();
-                        mailMessage.setFrom("vamsikaturu008@gmail.com");
-                        mailMessage.setTo(email);
-                        mailMessage.setText(reminder.getTitle()+"\n"+reminder.getDescription());
-                        mailMessage.setSubject("Reminder Alert");
-
-                        System.out.println("Description: "+ reminder.getDescription());
-                        javaMailSender.send(mailMessage);
-                    }else{
-                        System.out.println("shutdown the inital task");
-                        executor.shutdown();
-                    }
+                    System.out.println("shutdown the inital task");
+                    executor.shutdown();
                 }
             }
             else{

@@ -29,6 +29,7 @@
                         <th>Title</th>
                         <th>Description</th>
                         <th>Time</th>
+                        <th>Repeat</th>
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
@@ -40,6 +41,7 @@
                             <td>${row.title}</td>
                             <td style="text-align: justify;">${row.description}</td>
                             <td>${row.dateTime}</td>
+                            <td>${row.repeat}</td>
                             <td>${row.status}</td>
                             <td>
                                 <a><img onclick="onClickEditButton('${row.taskId}','${row.title}', '${row.description}', '${row.dateTime}', '${row.category.categoryName}', '${row.repeat}')" 

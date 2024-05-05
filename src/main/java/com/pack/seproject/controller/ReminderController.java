@@ -1,11 +1,6 @@
 package com.pack.seproject.controller;
 
-
-import java.text.DateFormat;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,8 +51,10 @@ public class ReminderController{
         Category category = categoryService.findByCategoryName(reminder.getCategory().getCategoryName());
         Reminder task = new Reminder(reminder.getTitle(), reminder.getDescription(), reminder.getDateTime(), 
                         reminder.getRepeat(), user, category, reminder.getStatus(), 0);
-
+        
+        reminderService.sendReminder(task, user.getEmail(), reminder.getDateTime(), task.getRepeat().split(" "));
         reminderService.saveReminder(task);
+        
 
         return "redirect:/userhome";
     }
@@ -100,6 +97,9 @@ public class ReminderController{
         updateReminder.setDescription(reminder.getDescription());
         updateReminder.setCategory(category);
         updateReminder.setIsUpdate(1);
+
+        reminderService.sendReminder(updateReminder, updateReminder.getUser().getEmail(), updateReminder.getDateTime(), 
+                        updateReminder.getRepeat().split(" "));
         reminderService.updateReminder(updateReminder, initialDateTIme);
 
         return "redirect:/viewtaskpage?id="+reminder.getUser().getId();
