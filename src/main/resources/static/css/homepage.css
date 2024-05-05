@@ -142,3 +142,7 @@ select option {
 option[id = "null"]{
     display:none;
 }
+
+option[id="repeat"]{
+    display: none;
+}

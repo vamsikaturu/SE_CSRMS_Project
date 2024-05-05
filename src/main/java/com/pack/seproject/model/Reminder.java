@@ -31,6 +31,8 @@ public class Reminder {
 
     String repeatReminder;
 
+    int isupdate;
+
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "userid")
     User user;
@@ -40,9 +42,11 @@ public class Reminder {
     Category category;
 
     public Reminder() {
+
     }
 
-    public Reminder(String title, String description, LocalDateTime dateTime, String repeatReminder, User user, Category category, String status) {
+    public Reminder(String title, String description, LocalDateTime dateTime, String repeatReminder, User user,
+                     Category category, String status, int isupdate) {
         this.title = title;
         this.description = description;
         this.dateTime = dateTime;
@@ -50,9 +54,9 @@ public class Reminder {
         this.repeatReminder = repeatReminder;
         this.category = category;
         this.status = status;
+        this.isupdate = isupdate;
     }
 
-    
 
     public int getTaskId() {
         return taskId;
@@ -102,11 +106,14 @@ public class Reminder {
         this.status = status;
     }
 
-    @Override
-    public String toString() {
-        return "Reminder [title=" + title + ", description=" + description + ", date=" + dateTime +"]";
+    public int getIsUpdate() {
+        return isupdate;
     }
 
+    public void setIsUpdate(int update) {
+        this.isupdate = update;
+    }
+    
     public Category getCategory() {
         return category;
     }
@@ -123,6 +130,9 @@ public class Reminder {
         this.repeatReminder = repeatReminder;
     }
 
-    
+    @Override
+    public String toString() {
+        return "Reminder [title=" + title + ", description=" + description + ", date=" + dateTime +"]";
+    }
 
 }

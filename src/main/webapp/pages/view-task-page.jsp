@@ -15,13 +15,14 @@
 
     <div class="search-task">
         <form:form>
-            <input id="search" type="text" placeholder="Enter Category Name" required>
+            <input id="date" type="date" placeholder="Enter Date" >
+            <input id="search" type="text" placeholder="Enter Category Name" >
             <button id="search-button">Search</button>
         </form:form>
     </div>
     <div class="view-task">
         <form>
-            <table class="scrolldown">
+            <table class="table_view">
                 <thead>
                     <tr>
                         <th>Category</th>
@@ -66,7 +67,7 @@
             <input id="edit-time" type="datetime-local" name="dateTime">
             <input type="hidden" name="user.username" value="${username}">
             <select id="repeat" onchange="onChangeRepeat()">
-                <option>Repeat</option>
+                <option id="repeat">Repeat</option>
                 <option id="dont" value="dont">Don't Repeat</option>
                 <option id="min" value="min">Repeat Every Minute</option>
                 <option id="hr" value="hr">Repeat Every Hour</option>
@@ -108,7 +109,7 @@
         }
     }
 
-    const onClickEditButton = (taskId, title, desc, dateTime, name, repeat)=>{
+    const onClickEditButton = (taskId, title, desc, dateTime, name, repeats)=>{
         document.getElementById('pop-up').style.display = 'block';
 
         document.getElementById('taskId').value = taskId
@@ -116,8 +117,27 @@
         document.getElementById('edit-des').value = desc
         document.getElementById('edit-time').value = dateTime
         document.getElementById(name).selected = true
-        let value = repeat.split(' ')
+        let value = repeats.split(' ')
         document.getElementById(value[1]).selected = true
+
+        const repeat = document.getElementById("repeat-input")
+        if(value[1] == "min"){
+            repeat.innerHTML = `
+                    <input type="text" id="minutes" name="repeat" placeholder="Enter minutes">
+            `
+        }else if(value[1] == "hr"){
+            repeat.innerHTML = `
+                    <input type="number" id="hours" name="repeat" placeholder="Enter hours">
+            `
+        }else if(value[1] == "day"){
+            repeat.innerHTML = `
+                    <input type="number" id="days" name="repeat" placeholder="Enter Days">
+            `
+        }else{
+            repeat.innerHTML = `
+                    <input type="text" value="don't Repeat" name="repeat" hidden>
+            `
+        }
         
     }
 
@@ -127,11 +147,16 @@
 
     document.getElementById("search-button").onclick = function(e){
         e.preventDefault()
-        let value = document.getElementById('search').value
+        let value = document.getElementById('search').value.toString()
+        let date = document.getElementById('date').value.toString()
         
-        if(value.length != 0){
-            window.location.href = "searchTask?value="+value+"&id=${id}"
-        }
+        if(date.length==0)
+            date = null
+        if(value.length == 0)
+            value = null
+    
+        window.location.href = "searchTask?value="+value+"&id=${id}&date="+date
+
     }
 
     const tbody = document.getElementById('tbody')

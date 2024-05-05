@@ -80,6 +80,20 @@ li {
     border-spacing: 0;
 }
 
+.table_view{
+    overflow-x:auto;
+    position: absolute;
+    color: antiquewhite;
+    margin: 2rem;
+    font-size: 24px;
+    background: rgb(0, 0, 0, 0.7);
+    top: 20%;
+}
+
+.table_view table{
+    border-spacing: 0px;
+}
+
 table.scrolldown {
     width: 100%;
     border-spacing: 0;
@@ -162,4 +176,8 @@ td {
     width: inherit;
     outline: none;
     margin: 1rem 0rem 2rem;
+}
+
+.pop-up option[id="repeat"]{
+    display: none;
 }

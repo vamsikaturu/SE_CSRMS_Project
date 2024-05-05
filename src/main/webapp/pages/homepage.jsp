@@ -41,7 +41,7 @@
             <input type="datetime-local" name="dateTime" >
 
             <select id="repeat" onchange="onChangeRepeat()">
-                <option>Repeat</option>
+                <option id="repeat">Repeat</option>
                 <option value="dont">Don't Repeat</option>
                 <option value="min">Repeat Every Minute</option>
                 <option value="hr">Repeat Every Hour</option>
